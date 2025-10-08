@@ -17,13 +17,13 @@ pipeline {
             }
         }
 
-        stage('Run Simple Test (Optional)') {
-            steps {
-                echo 'No automated tests yet, but you could run JS lint or browser tests.'
-                // Example: run ESLint
-                // sh 'npx eslint app.js'
-            }
-        }
+        // stage('Run Simple Test (Optional)') {
+        //     steps {
+        //         echo 'No automated tests yet, but you could run JS lint or browser tests.'
+        //         // Example: run ESLint
+        //         // sh 'npx eslint app.js'
+        //     }
+        // }
 
         stage('Lint Code') {
             steps {
