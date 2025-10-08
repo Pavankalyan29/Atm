@@ -25,6 +25,16 @@ pipeline {
             }
         }
 
+        stage('Lint Code') {
+            steps {
+                echo 'Checking HTML, CSS, and JS syntax...'
+                sh 'htmlhint index.html'
+                sh 'stylelint "**/*.css"'
+                sh 'eslint app.js'
+            }
+        }
+
+
         stage('Archive Project') {
             steps {
                 // Save files as artifacts in Jenkins
