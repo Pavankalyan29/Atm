@@ -1,25 +1,44 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
+                // Pull code from GitHub
                 git branch: 'main', url: 'https://github.com/Pavankalyan29/Atm'
             }
         }
-        stage('Build') {
+
+        stage('Install Dependencies (Optional)') {
             steps {
-                echo 'Building project...'
+                echo 'No dependencies required for plain HTML/CSS/JS.'
+                // If you had Node packages:
+                // sh 'npm install'
             }
         }
-        stage('Test') {
+
+        stage('Run Simple Test (Optional)') {
             steps {
-                echo 'Running tests...'
+                echo 'No automated tests yet, but you could run JS lint or browser tests.'
+                // Example: run ESLint
+                // sh 'npx eslint app.js'
             }
         }
-        stage('Deploy') {
+
+        stage('Archive Project') {
             steps {
-                echo 'Deploying project...'
+                // Save files as artifacts in Jenkins
+                archiveArtifacts artifacts: '**/*.html, **/*.css, **/*.js', fingerprint: true
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline finished successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Check console logs.'
         }
     }
 }
